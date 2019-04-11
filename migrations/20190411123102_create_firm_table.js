@@ -18,13 +18,7 @@ exports.up = async function(knex, Promise) {
                     table.string('website').nullable();
                     table.string('phone').nullable();
                     table.timestamps();
-                    
-                    
-                    
-
-
-
-                    
+                      
                 });
         } else {
             console.log('Table already exist');

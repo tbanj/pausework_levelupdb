@@ -1,7 +1,7 @@
 
 const industries = require('./source/industries');
 const organizations = require('./source/organizations');
-const employees = require('./source/employes');
+const employes = require('./source/employes');
 
 const createOrganization = (knex, org, industry) => {
   return knex('industries').where('name', industry).first()
@@ -12,7 +12,7 @@ const createOrganization = (knex, org, industry) => {
     });
 }
 
-const createEmployees = (knex, employees) => knex('employees').insert(employees);
+const createEmployes = (knex, employes) => knex('employes').insert(employes);
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
@@ -21,7 +21,7 @@ exports.seed = function(knex, Promise) {
       return knex('organizations').del();
     })
     .then(function () {
-      return knex('employees').del();
+      return knex('employes').del();
     })
     .then(function () {
       return knex('industries').insert(industries);
@@ -43,11 +43,11 @@ exports.seed = function(knex, Promise) {
       organizations
         .map(orgID => {
           return {
-            employees: employees.gen(10, orgID)
+            employes: employes.gen(10, orgID)
           }
         })
-        .forEach(orgEmployees => {
-          employeePromises.push(createEmployees(knex, orgEmployees.employees));
+        .forEach(orgEmployes => {
+          employeePromises.push(createEmployes(knex, orgEmployes.employes));
         });
 
       return Promise.all(employeePromises);
