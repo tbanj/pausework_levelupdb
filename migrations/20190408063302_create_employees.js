@@ -22,6 +22,9 @@ exports.up = async function(knex, Promise) {
                     table.unique('email');
                     table.unique('employee_id');
                     
+                    // for postgress you can only add new field to the
+                    // bottom of the createTable code but for
+                    // mysql you can specified where you want to add new column field
 
 
 
